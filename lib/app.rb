@@ -12,10 +12,12 @@ end
 
 loop do
   display_prompt
-  input = gets.gsub("\n", "").split(" ")
+  raw_input = gets
+  handle_commands(:Exit,nil) if raw_input.nil?
+  input = raw_input.gsub("\n", "").split(" ")
     if input[0] != ""
       command = input[0].capitalize.to_sym
       params = input[1..input.length]
       handle_commands(command, params)
-  end
+    end
 end
